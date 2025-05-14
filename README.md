@@ -34,5 +34,5 @@ This course is designed for:
 
 ---
 
-*If interested in partnerships, sponsorship, and offering student credits, please get in touch at hey@tuul.ai or via [x](https://x.com/shreyasgite) or [linkedin](https://www.linkedin.com/in/shreyasgite/) via a DM.*
+*If interested in partnerships, sponsorship, and offering student credits, please get in touch at hey@tuul.ai or via [x @shreyasgite](https://x.com/shreyasgite) or [linkedin](https://www.linkedin.com/in/shreyasgite/) via a DM.*
 *This is a beta version of the course made for [Hassso Plattner Institute, Postdam, Germany](https://hpi.de)*
