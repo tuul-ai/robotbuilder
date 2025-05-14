@@ -1,4 +1,4 @@
-# TuulAI RobotBuilder Masterclass: Agentic Robots — Simulation to Reality
+# TuulAI RobotBuilder: Zero to Hero in AI-Driven Robots
 
 This zero-to-hero robotics course follows the [fastai](https://www.fast.ai/) philosophy from Jeremy Howard, where we aim to create a state-of-the-art robotic system in the first lesson itself, then dive deep into the components over subsequent lessons.
 
