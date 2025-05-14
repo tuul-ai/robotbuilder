@@ -16,7 +16,7 @@ The course will use [lerobot](https://github.com/huggingface/lerobot/tree/main) 
 
 ### Module 2: Foundational Models
 - **Lesson 3:** Foundational models: Covering PI0 series, GROOT N1, Gemini Robotics
-  - Notebook: [Flow Matching Pi0](https://github.com/tuulai/robotbuilder/blob/main/notebooks/pi0%20flow%20matching.ipynb), Script, and Video: [Pi0](https://www.youtube.com/watch?v=7UHMTNA4aMY), [GROOT N1](https://www.youtube.com/watch?v=mKVf7avhJxU), Gemini Robotics
+  - Notebook: [Flow Matching Pi0](https://github.com/tuul-ai/robotbuilder/blob/main/notebooks/pi0_flow_matching.ipynb), Script, and Video: [Pi0](https://www.youtube.com/watch?v=7UHMTNA4aMY), [GROOT N1](https://www.youtube.com/watch?v=mKVf7avhJxU), Gemini Robotics
 
 ### Module 3: Synthetic Data
 - **Lesson 4:** Synthetic data and simulations
