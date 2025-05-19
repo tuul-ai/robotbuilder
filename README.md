@@ -10,9 +10,9 @@ The course is WIP and the structure is subject to change.
 The course will use [lerobot](https://github.com/huggingface/lerobot/tree/main) from HuggingFace as the middleware and SO100/SO101 as practical robots to build on lessons and experiment. However, you can apply these same lessons to any robot and embodiments.
 
 ### Module 1: Introduction to Robotics
-- **Lesson 1:** Introduction to AI driven Robotics with SO100/SO101 and Lerobot
+- **[Lesson 1](https://github.com/tuul-ai/robotbuilder/blob/main/Lesson_1.md)** - Introduction to AI driven Robotics with SO100/SO101 and Lerobot
   - Notebook, Script, and Video
-- **Lesson 2:** Gemini Robotics: [Training an agentic robotic arm as your assistant](https://github.com/tuul-ai/robotbuilder/blob/main/Lesson_2.md)
+- **[Lesson 2](https://github.com/tuul-ai/robotbuilder/blob/main/Lesson_2.md)** - Gemini Robotics: Training an agentic robotic arm as your assistant
 
 ### Module 2: Foundational Models
 - **Lesson 3:** Foundational models: Covering PI0 series, GROOT N1, Gemini Robotics
