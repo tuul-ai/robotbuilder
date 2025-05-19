@@ -15,14 +15,14 @@ The pipeline works as follows:
 ## Understanding Gemini Robotics
 
 The [Gemini robotics paper](https://arxiv.org/pdf/2503.20020) can be broken down into 3 parts:
-- Exploring the Embodied reasoning. [Demo](https://github.com/tuul-ai/robotbuilder/blob/main/notebooks/gemini_spatial_3d.ipynb) capabilities of Gemini
+- Exploring the Embodied reasoning capabilities of Gemini. [Demo](https://github.com/tuul-ai/robotbuilder/blob/main/notebooks/gemini_spatial_3d.ipynb) capabilities of Gemini
 - Gemini out of the box as robotic controller. [Demo](https://x.com/shreyasgite/status/1888109203606188464) 
 - Gemini ER + Local action decoder model as robotic foundational model. [Demo](https://x.com/shreyasgite/status/1923008943938244698)
 
 ### Comparison with Other Models
 
 One of the main differences between Gemini robotics vs [pi0](https://www.physicalintelligence.company/blog/pi0) & [GrootN1](https://arxiv.org/pdf/2503.14734) is that:
-- Gemini Robotics uses two VLAs: one is the finetuned Gemini with Emboided reasoning, and other distilled VLA run locally for action decoder.  
+- Gemini Robotics uses two VLAs: one is the finetuned Gemini with Embodied reasoning, and other distilled VLA run locally for action decoder.  
 - pi0 and Groot N1 use only one VLA directly connected to the Action decoder.
 
 ### How It Works
