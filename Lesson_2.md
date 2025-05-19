@@ -36,7 +36,7 @@ Since we don't have access to finetuned Gemini ER, we will use:
 - Gemini Flash 2.0 (good enough)
 - pi0 instead of Gemini robotics decoder
 
-Here is the video walk through. (YouTube link coming soon)
+Here is the [video walk through](https://youtu.be/M5YJI3i2ul0).
 
 ## Training Data Pipeline
 
