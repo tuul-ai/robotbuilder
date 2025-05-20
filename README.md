@@ -33,6 +33,7 @@ This course is designed for:
 3. Developers of models, APIs, and tools exploring how to expand their current infrastructure for robotics use cases
 
 ---
-
+*This is a material is part of in person course on AI driven Robotics at [Hassso Plattner Institute, Postdam, Germany](https://hpi.de)*
+*A full online version will be offered in the fall 2025.*
 *If interested in partnerships, sponsorship, and offering student credits, please get in touch at hey@tuul.ai or via [x @shreyasgite](https://x.com/shreyasgite) or [linkedin](https://www.linkedin.com/in/shreyasgite/) via a DM.*
-*This is a beta version of the course made for [Hassso Plattner Institute, Postdam, Germany](https://hpi.de)*
+
