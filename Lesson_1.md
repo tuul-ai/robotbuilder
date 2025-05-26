@@ -1,6 +1,9 @@
 # Lesson 1: Introduction to AI-Driven Robotics
 
-All that is gold does not glitter, not all those who wander are lost. Not every robot that dances can handle manipulation.
+All that is gold does not glitter, 
+not all those who wander are lost. 
+Not every robot that dances can handle manipulation.
+
 Do not get fooled by the shiny new robots and media hype. We are still far from getting general purpose robots that can handle multiple tasks.
 But in this course you will learn to reproduce the current state of the art in robotics:
 - [Gemini Robotics](https://deepmind.google/models/gemini-robotics/) & [Physical Intelligence](https://www.physicalintelligence.company/blog/pi05): General purpose robots
@@ -78,9 +81,9 @@ With generative AI, we can now create entirely new training examples:
 
 [![Data Augmentation Evolution](assets/data_aug.mov)](assets/data_aug.mov)
 
-## The Robotics Paradox
+## Moravec's Paradox
 
-One of the fascinating paradoxes in AI is that tasks humans find difficult (like playing chess or generating text) have proven easier for AI to master than tasks toddlers can do effortlessly (like manipulating objects or walking).
+One of the fascinating paradoxes in AI is that tasks humans find difficult (like playing chess or generating legal text or so called intelligent tasks) have proven easier for AI to master than tasks toddlers can do effortlessly (like manipulating objects or walking).
 
 Robotic manipulation remains challenging despite advances in language models because:
 
@@ -88,6 +91,8 @@ Robotic manipulation remains challenging despite advances in language models bec
 2. **High-Dimensional Continuous Control**: Precisely controlling many degrees of freedom simultaneously
 3. **Sparse Rewards**: Success often provides binary feedback (success/failure) rather than a gradient to follow
 4. **Limited Data**: Language models train on billions of examples; robot datasets are much smaller
+
+I am not a strong believer in Moravec's Paradox, I think its a data problem. We have internet and it has enormous (and diverse) data on white collor jobs, however no such huge data source exits how join manipulation to open the bottle, or pour a coffee. Once we do get that data, we will solve robotics.
 
 ### The Data Advantage
 

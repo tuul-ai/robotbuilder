@@ -4,10 +4,9 @@ This zero-to-hero robotics course follows the [fastai](https://www.fast.ai/) phi
 
 ## Course Structure
 
-The course will be built over the coming months. It will likely consist of 5 modules with a total of 10 sessions (1-3 sessions per module). Each module will include videos, scripts, notebooks, and Colab resources.
-The course is WIP and the structure is subject to change.
+*This material is part of in person course on AI driven Robotics at [Hassso Plattner Institute, Postdam, Germany](https://hpi.de). A full online version will be released in the fall 2025.* The course will be built over the coming months. It will likely consist of 5 modules with a total of 10 sessions (1-3 sessions per module). Each module will include videos, scripts, notebooks, and Colab resources. The course is WIP and the structure is subject to change.
 
-The course will use [lerobot](https://github.com/huggingface/lerobot/tree/main) from HuggingFace as the middleware and SO100/SO101 as practical robots to build on lessons and experiment. However, you can apply these same lessons to any robot and embodiments.
+We will use [lerobot](https://github.com/huggingface/lerobot/tree/main) from HuggingFace as the middleware and SO100/SO101 as practical robots to build on lessons and experiment. However, you can apply these same lessons to any robot and embodiments.
 
 ### Module 1: Introduction to Robotics
 - **[Lesson 1](https://github.com/tuul-ai/robotbuilder/blob/main/Lesson_1.md)** - Introduction: All that is gold does not glitter, not all those who wander are lost. Not every robot that dances can handle manipulation.
@@ -33,7 +32,5 @@ This course is designed for:
 3. Developers of models, APIs, and tools exploring how to expand their current infrastructure for robotics use cases
 
 ---
-*This is a material is part of in person course on AI driven Robotics at [Hassso Plattner Institute, Postdam, Germany](https://hpi.de)*
-*A full online version will be offered in the fall 2025.*
 *If interested in partnerships, sponsorship, and offering student credits, please get in touch at hey@tuul.ai or via [x @shreyasgite](https://x.com/shreyasgite) or [linkedin](https://www.linkedin.com/in/shreyasgite/) via a DM.*
 
