@@ -55,7 +55,13 @@ Key breakthroughs driving this revolution include:
 2. **Reinforcement Learning**: Enabling robots to learn optimal behaviors through trial and error (OpenAI's Dactyl, 2018)
 3. **Imitation Learning**: Learning from human demonstrations (BC-Z, 2023)
 4. **Vision-Language Models**: Connecting visual perception with language understanding (RT-2, 2023)
-5. **Foundation Models for Robotics**: Leveraging large pre-trained models for transfer learning in robotics (RT-X, 2023)
+5. **Foundation Models for Robotics**: Leveraging large pre-trained models for transfer learning in robotics (RT-X, 2023, Gemini Robotics, Groot, Pi and friends..)
+6. **World Models**: Learning a latent representation of the world.
+
+**Case for world models:**
+Human vision is staggered: motion cues reach the cortex a few milliseconds before colour, orientation arrives a beat later, and the whole percept takes roughly 200 ms to feed through eye, brain and muscles. To hit a 160 kmph fastball or a Shoaib Akhtar yorker (Aroldis Chapman's 100 mph pitch for baseball folks), a batter cannot wait for that pipeline to finish. Instead, the brain runs a private forward simulation, projecting where the ball will be a tenth of a second into the future and launching the swing toward that prediction.
+The same trick explains why we so often miss a house-fly. A fly can pivot in 30 ms—faster than our prediction horizon—so our internal simulation is already obsolete by the time we swat, and our hand slices clean air.
+Robots face identical delays: camera frames are stale by the time they reach the controller, and motors take yet more milliseconds to move. Give the robot a learned *[world model](https://worldmodels.github.io) grounded in physics*, and it can rehearse thousands of futures between sensor updates, choose the action that lands the grasp, and act as though it lives 100 ms ahead of real time. Without that predictive imagination, even the smartest policy is forever one frame behind reality.
 
 ## Data Augmentation: Then and Now
 
@@ -74,10 +80,11 @@ These techniques create variations of existing training samples, improving model
 ### Modern Generative Approaches
 
 With generative AI, we can now create entirely new training examples:
-- Inpainting missing parts of scenes
-- Creating novel viewpoints with NeRF (Neural Radiance Fields)
-- Generating synthetic training data with diffusion models
-- Domain randomization for sim-to-real transfer
+- [Inpainting distraction or outpainting for camera positions](https://x.com/shreyasgite/status/1893518497155576175)
+- Creating simulations with NeRF (Neural Radiance Fields) - [Deepmind Soccerbots](https://arxiv.org/pdf/2304.13653)
+- Generating [synthetic training data with diffusion models](https://diffusion-rosie.github.io)
+- Domain randomization for sim-to-real transfer - [OpenAI's Rubiks Cube](https://openai.com/index/solving-rubiks-cube/)
+- Generating new tragectories with video generative models - [NVIDIA DreamGen](https://research.nvidia.com/labs/gear/dreamgen/)
 
 [![Data Augmentation Evolution](assets/data_aug.mov)](assets/data_aug.mov)
 
