@@ -33,9 +33,6 @@ Collect your [first episodes](https://github.com/huggingface/lerobot/blob/main/e
 - Use same grasping style. 
 Once you have your first 50 episodes, you can start training your first model. And later on you can explore more complex tasks.
 
-Here is visualisation of simple pick & place task:
-[![Pick & Place](assets/pick_place.mp4)](assets/pick_place.mp4) 
-
 ## The Evolution of Robotics: From Factory Arms to Intelligent Systems
 
 Traditional robotics has been dominated by industrial and factory robots for decades. These machines excel at repetitive, precisely defined tasks in controlled environments. A typical factory robot might:
@@ -99,7 +96,7 @@ With generative AI, we can now create entirely new training examples:
 - Domain randomization for sim-to-real transfer - [OpenAI's Rubiks Cube](https://openai.com/index/solving-rubiks-cube/)
 - Generating new tragectories with video generative models - [NVIDIA DreamGen](https://research.nvidia.com/labs/gear/dreamgen/)
 
-[![Data Augmentation Evolution](assets/data_aug.mp4)](assets/data_aug.mp4)
+[![Data Augmentation Evolution](assets/data_aug.mov)](assets/data_aug.mov)
 
 ## Moravec's Paradox
 
