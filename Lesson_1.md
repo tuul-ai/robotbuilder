@@ -23,6 +23,19 @@ The fundamental challenges of perception, planning, control, and learning transf
 Follow the [get started guide](https://github.com/huggingface/lerobot/blob/main/examples/10_use_so100.md) on so100/101 from Lerobot to assemble, calibrate, and test the robot.
 Collect your [first episodes](https://github.com/huggingface/lerobot/blob/main/examples/10_use_so100.md#j-train-a-policy) and train your first model.
 
+#### For your first recording run, keep it simple. 
+
+- Record 50 episodes for pick and place.  
+- Try 4 to 5 different pick locations.
+- Keep the place location fixed.
+- Keep the object fixed.
+- Keep the camera position fixed.
+- Use same grasping style. 
+Once you have your first 50 episodes, you can start training your first model. And later on you can explore more complex tasks.
+
+Here is visualisation of simple pick & place task:
+[![Pick & Place](assets/pick_place.mov)](assets/pick_place.mov) 
+
 ## The Evolution of Robotics: From Factory Arms to Intelligent Systems
 
 Traditional robotics has been dominated by industrial and factory robots for decades. These machines excel at repetitive, precisely defined tasks in controlled environments. A typical factory robot might:
