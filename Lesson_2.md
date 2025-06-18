@@ -52,20 +52,33 @@ How the training data pipeline works:
 
 It is assumed that you have SO100 or SO101 from lerobot setup and have done the vanilla act training from lesson 1 (lesson_1 is WIP).
 
-1. Update your [`manipulator.py`](https://github.com/huggingface/lerobot/blob/main/lerobot/common/robot_devices/robots/manipulator.py) file: Make necessary changes to robot states on line 188:
+1. Update your [`utils.py`](https://github.com/huggingface/lerobot/blob/main/lerobot/common/datasets/utils.py) file: Make necessary changes to robot states on line 411:
    ```python
-   def motor_features(self) -> dict:
-        action_names = self.get_motor_names(self.leader_arms)
-        state_names = self.get_motor_names(self.leader_arms) + ["pick_y1", "pick_x1", "pick_y2", "pick_x2"] + ["place_y1", "place_x1", "place_y2", "place_x2"]
+   def hw_to_dataset_features():
+         .....
+         ....
+      if joint_fts and prefix == "observation":
+         additional_states = ['pick_y1', 'pick_x1', 'pick_y2', 'pick_x2', 'place_y1', 'place_x1', 'place_y2', 'place_x2']
+         state_names = {**joint_fts, **{name: float for name in additional_states}}
+         features[f"{prefix}.state"] = {
+            "dtype": "float32",
+            "shape": (len(state_names),),
+            "names": list(state_names),
+         }
+         .....
+         ....
    ```
-2. Replace your [`control_utils.py`](https://github.com/huggingface/lerobot/blob/main/lerobot/common/robot_devices/control_utils.py) file with [the file from this repo](https://github.com/tuul-ai/robotbuilder/blob/main/notebooks/scripts/control_utils.py).
-3. Add `gemini_perception.py` file to a new directory called `vision_utils`, so the new path will look like: `lerobot/common/vision_utils/gemini_perception.py`
+2. Replace your [`control_utils.py`](https://github.com/huggingface/lerobot/blob/main/lerobot/common/utils/control_utils.py) file with [the file from this repo](https://github.com/tuul-ai/robotbuilder/blob/main/notebooks/scripts/control_utils.py).
+3. Add `gemini_perception.py` file to lerobot in the same directory as record_bbox.py or record.py, so the new path will look like: `lerobot/gemini_perception.py`
+4. Add `record_bbox.py` file to lerobot in the same directory as `record.py`.
+
 
 Notes: (Working on making this more user friendly and generic, but for now this is the best way to do it)
-- If you are not using bins or containers for place update prompt in `get_2d_bbox` in [`gemini_perception.py`](https://github.com/tuul-ai/robotbuilder/blob/main/notebooks/scripts/gemini_perception.py)
-- Or pass on the prompt to `get_target_bbox` with `place_locations` in `gemini_perception`
-- And update the argument `place_location="bin"` in `create_pick_place_list`
-- Add `--control.display_data=true` for visualization while running the [lerobot data recording command](https://github.com/huggingface/lerobot/blob/main/examples/10_use_so100.md#g-record-a-dataset)
+1. Use the new scrip to record data python -m lerobot.record_bbox \
+    --robot.type=so101_follower \
+    .....
+2. Change "front" in `observation["front"]` to `observation["top"]` if you are using top camera or to whatever your camera name is in camera config.
+3. Use spacebar to select new bbox.
 
 ## Inference Process
 
