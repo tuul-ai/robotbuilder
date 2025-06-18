@@ -74,10 +74,13 @@ It is assumed that you have SO100 or SO101 from lerobot setup and have done the 
 
 
 Notes: (Working on making this more user friendly and generic, but for now this is the best way to do it)
-1. Use the new scrip to record data python -m lerobot.record_bbox \
+1. Use the new script (record_bbox.py) to record data:
+```bash
+python -m lerobot.record_bbox \
     --robot.type=so101_follower \
     .....
-2. Change "front" in `observation["front"]` to `observation["top"]` if you are using top camera or to whatever your camera name is in camera config.
+```
+2. In record_bbox.py file, change "front" in `observation["front"]` to `observation["top"]` if you are using top camera or to whatever your camera name is in camera config.
 3. Use spacebar to select new bbox.
 
 ## Inference Process
