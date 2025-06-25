@@ -256,7 +256,8 @@ def record_loop(
                 if isinstance(val, float):
                     rr.log(f"observation.{obs}", rr.Scalar(val))
                 elif isinstance(val, np.ndarray):
-                    val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t, place_bbox=place_t))
+                    if "front" in obs:
+                        val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t, place_bbox=place_t))
                     rr.log(f"observation.{obs}", rr.Image(val), static=True)
             for act, val in action.items():
                 if isinstance(val, float):
