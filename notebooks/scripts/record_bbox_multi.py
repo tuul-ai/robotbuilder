@@ -186,45 +186,31 @@ def record_loop(
 
     timestamp = 0
     start_episode_t = time.perf_counter()
-
-    BOX_AUGMENTATION = True
-    multi_view = False
-
-    if BOX_AUGMENTATION:
-        observation = robot.get_observation()
-        print(observation.keys())
-        if multi_view:
-            # Multi-view perception using both top and front cameras
-            # Assuming the robot has both 'top' and 'front' cameras
-            if "top" in observation and "front" in observation:
-                (pick_top, pick_front, place_top, place_front, 
-                 norm_pick_top, norm_pick_front, norm_place_top, norm_place_front,
-                 pick_labels, place_labels) = get_target_bbox_multi_view(
-                    observation["top"], 
-                    observation["front"]
-                )
-                
-                (pick_t_top, pick_t_front, place_t_top, place_t_front,
-                 norm_pick_t_top, norm_pick_t_front, norm_place_t_top, norm_place_t_front,
-                 pick_top, pick_front, norm_pick_top, norm_pick_front,
-                 pick_target_label, place_target_label, pick_labels) = get_random_targets_multi_view(
-                    pick_top, pick_front, place_top, place_front, 
-                    norm_pick_top, norm_pick_front, norm_place_top, norm_place_front,
-                    pick_labels, place_labels
-                )
-                
-                single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
-            else:
-                # Fallback to single view if multi-view cameras not available
-                print("Multi-view cameras not available, falling back to single view")
-                multi_view = False
-                
-        if not multi_view:
-            # Original single-view logic
-            pick, place, norm_pick, norm_place, pick_labels, place_labels = get_target_bbox(observation["front"])
-            pick_t, place_t, norm_pick_t, norm_place_t, pick, norm_pick, pick_target_label, place_target_label, pick_labels = get_random_targets(pick, place, norm_pick, norm_place, pick_labels, place_labels)
-            single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
     
+    observation = robot.get_observation()
+    print(observation.keys())
+
+    # Multi-view perception using both top and front cameras
+    # Assuming the robot has both 'top' and 'front' cameras
+    # Change the camera names if needed
+    (pick_top, pick_front, place_top, place_front, 
+    norm_pick_top, norm_pick_front, norm_place_top, norm_place_front,
+    pick_labels, place_labels) = get_target_bbox_multi_view(
+                observation["top"], 
+                observation["front"]
+            )
+                
+    (pick_t_top, pick_t_front, place_t_top, place_t_front,
+    norm_pick_t_top, norm_pick_t_front, norm_place_t_top, norm_place_t_front,
+    pick_top, pick_front, norm_pick_top, norm_pick_front,
+    pick_target_label, place_target_label, pick_labels) = get_random_targets_multi_view(
+            pick_top, pick_front, place_top, place_front, 
+            norm_pick_top, norm_pick_front, norm_place_top, norm_place_front,
+            pick_labels, place_labels
+        )
+                
+    single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
+                
     while timestamp < control_time_s:
         start_loop_t = time.perf_counter()
 
@@ -233,23 +219,37 @@ def record_loop(
             break
         if events["select_new_bbox"]:
             events["select_new_bbox"] = False
-            if BOX_AUGMENTATION and multi_view:
-                (pick_t_top, pick_t_front, place_t_top, place_t_front,
-                 norm_pick_t_top, norm_pick_t_front, norm_place_t_top, norm_place_t_front,
-                 pick_top, pick_front, norm_pick_top, norm_pick_front,
-                 pick_target_label, place_target_label, pick_labels) = get_random_targets_multi_view(
-                    pick_top, pick_front, place_top, place_front, 
-                    norm_pick_top, norm_pick_front, norm_place_top, norm_place_front,
-                    pick_labels, place_labels
-                )
-            elif BOX_AUGMENTATION:
-                pick_t, place_t, norm_pick_t, norm_place_t, pick, norm_pick, pick_target_label, place_target_label, pick_labels = get_random_targets(pick, place, norm_pick, norm_place, pick_labels, place_labels)
-            
-            if single_task is not None:
-                single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
 
+            (pick_t_top, pick_t_front, place_t_top, place_t_front,
+            norm_pick_t_top, norm_pick_t_front, norm_place_t_top, norm_place_t_front,
+            pick_top, pick_front, norm_pick_top, norm_pick_front,
+            pick_target_label, place_target_label, pick_labels) = get_random_targets_multi_view(
+                pick_top, pick_front, place_top, place_front, 
+                norm_pick_top, norm_pick_front, norm_place_top, norm_place_front,
+                pick_labels, place_labels
+            )
+            single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
+            
         
         observation = robot.get_observation()
+        observation.update({
+            'pick_y1_top': norm_pick_t_top[0],
+            'pick_x1_top': norm_pick_t_top[1], 
+            'pick_y2_top': norm_pick_t_top[2],
+            'pick_x2_top': norm_pick_t_top[3],
+            'place_y1_top': norm_place_t_top[0],
+            'place_x1_top': norm_place_t_top[1],
+            'place_y2_top': norm_place_t_top[2],
+            'place_x2_top': norm_place_t_top[3],
+            'pick_y1_front': norm_pick_t_front[0],
+            'pick_x1_front': norm_pick_t_front[1], 
+            'pick_y2_front': norm_pick_t_front[2],
+            'pick_x2_front': norm_pick_t_front[3],
+            'place_y1_front': norm_place_t_front[0],
+            'place_x1_front': norm_place_t_front[1],
+            'place_y2_front': norm_place_t_front[2],
+            'place_x2_front': norm_place_t_front[3],
+        })
 
         if policy is not None or dataset is not None:
             observation_frame = build_dataset_frame(dataset.features, observation, prefix="observation")
@@ -288,11 +288,11 @@ def record_loop(
                 if isinstance(val, float):
                     rr.log(f"observation.{obs}", rr.Scalar(val))
                 elif isinstance(val, np.ndarray):
-                    #if "front" in obs:
-                    #    val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t_front, place_bbox=place_t_front))
-                    #else:
-                    #    val = np.array(plot_bbox(observation["top"], pick_bbox=pick_t_top, place_bbox=place_t_top))
-                    val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t, place_bbox=place_t))
+                    if "front" in obs:
+                        val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t_front, place_bbox=place_t_front))
+                    else:
+                        val = np.array(plot_bbox(observation["top"], pick_bbox=pick_t_top, place_bbox=place_t_top))
+                    #val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t, place_bbox=place_t))
                     rr.log(f"observation.{obs}", rr.Image(val), static=True)
             for act, val in action.items():
                 if isinstance(val, float):

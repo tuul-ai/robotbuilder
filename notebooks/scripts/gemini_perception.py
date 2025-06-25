@@ -9,7 +9,7 @@ import time
 GEMINI_API_KEY = os.environ.get("GOOGLE_API_KEY")
 client = genai.Client(api_key=GEMINI_API_KEY)
 MODEL_ID = "gemini-2.0-flash"  # Use Gemini 2.0 Flash for 3D capabilities
-PRO_MODEL_ID ='gemini-2.0-pro-exp-02-05'
+PRO_MODEL_ID ='gemini-2.5-pro'
 
 def tensor_to_pil(tensor: torch.Tensor | np.ndarray) -> Image.Image:
     """Convert a PyTorch tensor or numpy array to PIL Image"""

@@ -187,15 +187,13 @@ def record_loop(
     timestamp = 0
     start_episode_t = time.perf_counter()
 
-    BOX_AUGMENTATION = True
-
-    if BOX_AUGMENTATION:
-        observation = robot.get_observation()
-        print(observation.keys())
-        # Original single-view logic
-        pick, place, norm_pick, norm_place, pick_labels, place_labels = get_target_bbox(observation["front"])
-        pick_t, place_t, norm_pick_t, norm_place_t, pick, norm_pick, pick_target_label, place_target_label, pick_labels = get_random_targets(pick, place, norm_pick, norm_place, pick_labels, place_labels)
-        single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
+    
+    observation = robot.get_observation()
+    
+    # Original single-view logic
+    pick, place, norm_pick, norm_place, pick_labels, place_labels = get_target_bbox(observation["front"])
+    pick_t, place_t, norm_pick_t, norm_place_t, pick, norm_pick, pick_target_label, place_target_label, pick_labels = get_random_targets(pick, place, norm_pick, norm_place, pick_labels, place_labels)
+    single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
     
     while timestamp < control_time_s:
         start_loop_t = time.perf_counter()
@@ -205,21 +203,20 @@ def record_loop(
             break
         if events["select_new_bbox"]:
             events["select_new_bbox"] = False
-            if BOX_AUGMENTATION:
-                pick_t, place_t, norm_pick_t, norm_place_t, pick, norm_pick, pick_target_label, place_target_label, pick_labels = get_random_targets(pick, place, norm_pick, norm_place, pick_labels, place_labels)
-                single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
+            pick_t, place_t, norm_pick_t, norm_place_t, pick, norm_pick, pick_target_label, place_target_label, pick_labels = get_random_targets(pick, place, norm_pick, norm_place, pick_labels, place_labels)
+            single_task = f"Grasp {pick_target_label} and put it in {place_target_label}"
 
         
         observation = robot.get_observation()
         observation.update({
-            'pick_y1': norm_pick_t[0] if BOX_AUGMENTATION else 0.0,
-            'pick_x1': norm_pick_t[1] if BOX_AUGMENTATION else 0.0, 
-            'pick_y2': norm_pick_t[2] if BOX_AUGMENTATION else 0.0,
-            'pick_x2': norm_pick_t[3] if BOX_AUGMENTATION else 0.0,
-            'place_y1': norm_place_t[0] if BOX_AUGMENTATION else 0.0,
-            'place_x1': norm_place_t[1] if BOX_AUGMENTATION else 0.0,
-            'place_y2': norm_place_t[2] if BOX_AUGMENTATION else 0.0,
-            'place_x2': norm_place_t[3] if BOX_AUGMENTATION else 0.0,
+            'pick_y1': norm_pick_t[0],
+            'pick_x1': norm_pick_t[1], 
+            'pick_y2': norm_pick_t[2],
+            'pick_x2': norm_pick_t[3],
+            'place_y1': norm_place_t[0],
+            'place_x1': norm_place_t[1],
+            'place_y2': norm_place_t[2],
+            'place_x2': norm_place_t[3],
         })
 
         if policy is not None or dataset is not None:
@@ -259,8 +256,7 @@ def record_loop(
                 if isinstance(val, float):
                     rr.log(f"observation.{obs}", rr.Scalar(val))
                 elif isinstance(val, np.ndarray):
-                    if BOX_AUGMENTATION:
-                        val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t, place_bbox=place_t))
+                    val = np.array(plot_bbox(observation["front"], pick_bbox=pick_t, place_bbox=place_t))
                     rr.log(f"observation.{obs}", rr.Image(val), static=True)
             for act, val in action.items():
                 if isinstance(val, float):
