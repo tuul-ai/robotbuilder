@@ -7,7 +7,6 @@ Imagine you're teaching a robot to make breakfast. In the first step, the robot 
 Here's the mind-bending question: **Should these two completely different types of movements use the same statistical "ruler" for learning?**
 
 For years, I assumed "yes" - however after watching Russ talk about data normalization for action sequences, I decided to try it out. His research showed that fixing this one issue provides **20+ percentage point improvements** in robot success rates. Not 2%. Not 10%. **Twenty plus percentage points**. 
-
 And this improvement comes not from fancy new neural architectures or clever algorithms, but from something as mundane as **how we normalize our data**. It's like discovering that the secret to making Formula 1 cars faster isn't a new engine design - it's properly inflating the tires.
 
 ## What Is Data Normalization Anyway?
@@ -215,6 +214,45 @@ Tedrake normalization provides the most benefit when:
 
 For single-timestep policies or very short sequences, the improvement will be minimal since there's no temporal variation to exploit.
 
+
+---
+
+## Getting Started: Adding Files to Your LeRobot Repo
+
+To use Tedrake normalization in your LeRobot setup, you need to add three files from this repository to your working LeRobot installation:
+
+### Step 1: Locate the Files
+
+In the `robotbuilder` repository, find the `timestep_norm` directory which contains three essential files:
+- `normalize_tedrake.py` - Enhanced normalization classes
+- `train_with_tedrake.py` - Training script with Tedrake normalization
+- `compute_enhanced_stats.py` - Statistics computation utility
+
+### Step 2: Add Files to Your LeRobot Repo
+
+Copy these files to the appropriate locations in your LeRobot repository:
+
+```bash
+# From the robotbuilder/timestep_norm directory, copy:
+cp normalize_tedrake.py /path/to/your/lerobot/src/lerobot/policies/
+cp train_with_tedrake.py /path/to/your/lerobot/src/lerobot/scripts/
+cp compute_enhanced_stats.py /path/to/your/lerobot/src/lerobot/scripts/
+```
+
+### Step 3: Start Training
+
+Once the files are in place, you can start training with Tedrake normalization using this command:
+
+```bash
+python lerobot/src/lerobot/scripts/train_with_tedrake.py \
+    --compute-enhanced-stats \
+    --config-name=smolvla_pusht \
+    --dataset.repo_id=your_dataset \
+    --policy.path=lerobot/smolvla_base \
+    --output_dir=./outputs/enhanced_model
+```
+
+Replace `your_dataset` with your actual dataset repository ID, and adjust other parameters as needed for your specific use case.
 
 ---
 
