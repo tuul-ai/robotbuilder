@@ -1,6 +1,8 @@
-# TuulAI RobotBuilder: Zero to Hero in AI-Driven Robots
+# RobotBuilder: Experiment log for Robotics Foundation Models, Synthetic Data & Robot Character
 
-This zero-to-hero robotics course follows the [fastai](https://www.fast.ai/) philosophy from Jeremy Howard, where we aim to create a state-of-the-art robotic system in the first lesson itself, then dive deep into the components over subsequent lessons.
+> This repository serves as a log for my ongoing experiments exploring the intersection of robotics foundation models, synthetic data generation, and imbuing robots with character traits like context awareness, memory, and agentic behavior. Here, you'll find experimental notebooks, results, code snippets, and eventually, videos showcasing these explorations.
+
+The initial focus is on building a self-improving robotics system, nicknamed where a robot can analyze its own performance, identify weaknesses, and automatically generate targeted training data to improve. As i learn more I will try to make the material more accessible and in a course format, so anyone with passion for robotics can from zero to hero in building their own AI driven robots.
 
 ## Course Structure
 
